@@ -3,18 +3,6 @@ const app = express()
 const Sequelize = require('sequelize')
 const config = require('./app/configs/db.config.js')
 
-app.get('/', (req, res) => {
-    try {
-        // res.send('ping success to database')
-        res.statusCode(200)
-        res.json({ message: process.env.DB_HOST })
-        console.log('ping success to database')
-    } catch (error) {
-        console.error('error while trying to connect to database')
-        res.statusCode(404)
-    }
-})
-
 // DATABASE CONNECTION
 
 // Create Sequelize instance
@@ -32,6 +20,18 @@ const sequelize = new Sequelize(
         }
     }
 )
+
+app.get('/', (req, res) => {
+    try {
+        // res.send('ping success to database')
+        res.status(200).json({ message: process.env.DB_HOST })
+        console.log('ping success to database')
+    } catch (error) {
+        console.error('error while trying to connect to database')
+        res.status(404).json({ message: 'error while trying to connect to database' })
+    }
+})
+
 
 sequelize.authenticate()
     .then(() => {
