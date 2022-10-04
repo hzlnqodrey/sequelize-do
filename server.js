@@ -1,7 +1,7 @@
-const express = require('express')
-const app = express()
+const express   = require('express')
+const app       = express()
 const Sequelize = require('sequelize')
-const config = require('./app/configs/db.config.js')
+const config    = require('./app/configs/db.config.js')
 
 // DATABASE CONNECTION
 
@@ -51,16 +51,16 @@ sequelize.authenticate()
         console.error('Unable to connect to the database: ', error)
     })
 
-// Ping Database
-const pingConnection = async () => {
-    try {
-        await db.sequelize.authenticate()
-        console.log('Connection has been established successfully.');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
-}
-pingConnection()
+// // Ping Database
+// const pingConnection = async () => {
+//     try {
+//         await db.sequelize.authenticate()
+//         console.log('Connection has been established successfully.');
+//     } catch (error) {
+//         console.error('Unable to connect to the database:', error);
+//     }
+// }
+// pingConnection()
 
 PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
