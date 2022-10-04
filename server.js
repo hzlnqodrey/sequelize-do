@@ -1,39 +1,32 @@
 const express   = require('express')
 const app       = express()
 const Sequelize = require('sequelize')
+const cors      = require('cors')
+
+// Import Module
 const config    = require('./app/configs/db.config.js')
 
-// DATABASE CONNECTION
+var corsOptions = {
+    origin: "http://localhost:8080"
+};
 
-// Create Sequelize instance
-const sequelize = new Sequelize(
-    config.DB, config.USER, config.PASSWORD, 
-    {
-        host: config.HOST,
-        dialect: config.dialect,
-        operatorAliases: false, // String based operator alias. Pass object to limit set of aliased operators. Ref: https://www.w3schools.com/sql/sql_alias.asp#:~:text=SQL%20aliases%20are%20used%20to,created%20with%20the%20AS%20keyword.
-        pool: {
-            max: config.pool.max,
-            min: config.pool.min,
-            acquire: config.pool.acquire,
-            idle: config.pool.idle
-        },
-        dialectOptions: {
-            socketPath: config.HOST
-        },
-        define: {
-            freezeTableName: true
-        }
-    }
-)
+app.use(cors(corsOptions))
+
+// parse requests of content-type - application/json
+app.use(express.json())
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
     try {
         // res.send('ping success to database')
         res.status(200).json({ 
-            message: process.env.DB_HOST,
+            db_host: config.HOST,
+            db_username: config.USER,
+            db_pass: config.PASSWORD,
+            db_name: config.DB,
             status: 'success',
-            process: process.env
         })
         console.log('ping success to database')
     } catch (error) {
@@ -41,26 +34,6 @@ app.get('/', (req, res) => {
         res.status(404).json({ message: 'error while trying to connect to database' })
     }
 })
-
-
-sequelize.authenticate()
-    .then(() => {
-        console.log('Connection has been established successfully')
-    })
-    .catch((error) => {
-        console.error('Unable to connect to the database: ', error)
-    })
-
-// // Ping Database
-// const pingConnection = async () => {
-//     try {
-//         await db.sequelize.authenticate()
-//         console.log('Connection has been established successfully.');
-//     } catch (error) {
-//         console.error('Unable to connect to the database:', error);
-//     }
-// }
-// pingConnection()
 
 PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
