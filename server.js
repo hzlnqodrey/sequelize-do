@@ -12,9 +12,12 @@ db.sequelize.sync({ force: true })
     .then(() => {
         console.log("Drop and re-Synced to DB.");
     })
+    .catch((error) => {
+        console.error("Failed to sync db: " + error.message)
+    })
 
 var corsOptions = {
-    origin: "http://localhost:8080"
+    origin: "http://localhost:8000"
 };
 
 app.use(cors(corsOptions))
@@ -42,7 +45,7 @@ app.get('/', (req, res) => {
     }
 })
 
-PORT = process.env.PORT || 8080
+PORT = process.env.PORT || 8000
 app.listen(PORT, () => {
     console.log(`Server berjalan pada port ${PORT}`);
 })
