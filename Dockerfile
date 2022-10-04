@@ -2,8 +2,8 @@ FROM node:14.17.0-alpine
 
 WORKDIR /usr/src/app
 
-ENV PORT 8080
-ENV HOST 0.0.0.0
+ENV PORT=8080
+ENV HOST=0.0.0.0
 
 COPY package*.json ./
 
@@ -18,3 +18,4 @@ COPY . .
 # Start the service
 # CMD npm start
 CMD ["node", "server.js"]
+

@@ -24,7 +24,11 @@ const sequelize = new Sequelize(
 app.get('/', (req, res) => {
     try {
         // res.send('ping success to database')
-        res.status(200).json({ message: process.env.DB_HOST })
+        res.status(200).json({ 
+            message: process.env.DB_HOST,
+            status: 'success',
+            process: process.env
+        })
         console.log('ping success to database')
     } catch (error) {
         console.error('error while trying to connect to database')
