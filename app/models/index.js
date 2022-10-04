@@ -13,6 +13,9 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD,
             acquire: dbConfig.pool.acquire,
             idle: dbConfig.pool.idle
         },
+        dialectSocket: {
+            socketPath: dbConfig.dialectOptions.socketPath
+        },
         operatorAliases: false, // String based operator alias. Pass object to limit set of aliased operators. Ref: https://www.w3schools.com/sql/sql_alias.asp#:~:text=SQL%20aliases%20are%20used%20to,created%20with%20the%20AS%20keyword.
         define: {
             freezeTableName: true
