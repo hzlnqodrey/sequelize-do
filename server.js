@@ -7,24 +7,24 @@ const cors      = require('cors')
 const config    = require('./app/configs/db.config.js')
 const db        = require('./app/models')
 
-// Sync Database - Development | dont use this when production
-db.sequelize.sync({ force: true })
-    .then(() => {
-        console.log("Drop and re-Synced to DB.");
-    })
-    .catch((error) => {
-        console.error("Failed to sync db: " + error.message)
-    })
+// Test Connection to Database
+const pingDatabase = async () => {
+    try {
+        await db.sequelize.authenticate()
+        console.log('Connection has been established successfully')
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+}
+pingDatabase()
 
+// Middleware
 var corsOptions = {
     origin: "http://localhost:8000"
 };
-
 app.use(cors(corsOptions))
-
 // parse requests of content-type - application/json
 app.use(express.json())
-
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 
