@@ -4,6 +4,7 @@ const Sequelize = require('sequelize')
 const cors      = require('cors')
 
 // Import Module
+const config    = require('./app/configs/db.config')
 const db        = require('./app/models')
 
 // Test Connection to Database
@@ -19,7 +20,7 @@ pingDatabase()
 
 // Middleware
 var corsOptions = {
-    origin: "http://localhost:8000"
+    origin: "http://localhost:8080"
 };
 app.use(cors(corsOptions))
 // parse requests of content-type - application/json
@@ -33,13 +34,14 @@ app.get('/', (req, res) => {
             // db_username: config.USER,
             // db_pass: config.PASSWORD,
             // db_name: config.DB,
+            // db_port: config.port,
             status: 'success',
             message: 'Welcome to tediApp'
         })
         console.log('ping success to database')
 })
 
-PORT = process.env.PORT || 8080
+PORT = parseInt(process.env.PORT) || 8080
 app.listen(PORT, () => {
-    console.log(`Server berjalan pada port ${PORT}`);
+    console.log(`Server is listening on port ${port}`);
 })
