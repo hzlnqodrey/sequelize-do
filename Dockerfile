@@ -4,7 +4,7 @@ RUN apk add --no-cache python2 g++ make
 
 WORKDIR /app
 
-ENV PORT=3306
+ENV PORT=8080
 ENV HOST=0.0.0.0
 
 COPY package*.json ./
@@ -23,5 +23,5 @@ RUN chown -R node /app/node_modules
 # CMD npm start
 CMD ["node", "server.js"]
 
-EXPOSE 3000
+EXPOSE 8080
 

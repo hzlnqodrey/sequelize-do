@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
     }
 })
 
-PORT = process.env.PORT || 8000
+PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
     console.log(`Server berjalan pada port ${PORT}`);
 })
