@@ -5,6 +5,13 @@ const cors      = require('cors')
 
 // Import Module
 const config    = require('./app/configs/db.config.js')
+const db        = require('./app/models')
+
+// Sync Database - Development | dont use this when production
+db.sequelize.sync({ force: true })
+    .then(() => {
+        console.log("Drop and re-Synced to DB.");
+    })
 
 var corsOptions = {
     origin: "http://localhost:8080"
