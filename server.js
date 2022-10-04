@@ -4,7 +4,6 @@ const Sequelize = require('sequelize')
 const cors      = require('cors')
 
 // Import Module
-const config    = require('./app/configs/db.config.js')
 const db        = require('./app/models')
 
 // Test Connection to Database
@@ -29,20 +28,15 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-    try {
-        // res.send('ping success to database')
         res.status(200).json({ 
-            db_host: config.HOST,
-            db_username: config.USER,
-            db_pass: config.PASSWORD,
-            db_name: config.DB,
+            // db_host: config.HOST,
+            // db_username: config.USER,
+            // db_pass: config.PASSWORD,
+            // db_name: config.DB,
             status: 'success',
+            message: 'Welcome to tediApp'
         })
         console.log('ping success to database')
-    } catch (error) {
-        console.error('error while trying to connect to database')
-        res.status(404).json({ message: 'error while trying to connect to database' })
-    }
 })
 
 PORT = process.env.PORT || 8080
