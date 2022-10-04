@@ -18,6 +18,9 @@ const sequelize = new Sequelize(
             acquire: config.pool.acquire,
             idle: config.pool.idle
         },
+        dialectOptions: {
+            socketPath: config.HOST
+        },
         define: {
             freezeTableName: true
         }
