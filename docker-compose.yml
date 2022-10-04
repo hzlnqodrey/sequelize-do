@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  app:
+    image: node:14-alpine
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - target: 3306
+        published: 3000
+        protocol: tcp
+        mode: host
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      DB_HOST: /cloudsql/tedi-backend-web:asia-southeast2:db-testing-sequelize-backend
+      DB_USERNAME: db-testing-sequelize-admin
+      DB_PASSWORD: 123456
+      DB_NAME: hello_world_db
+      
+volumes:
+  mysql-data:

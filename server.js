@@ -45,6 +45,17 @@ sequelize.authenticate()
         console.error('Unable to connect to the database: ', error)
     })
 
+// Ping Database
+const pingConnection = async () => {
+    try {
+        await db.sequelize.authenticate()
+        console.log('Connection has been established successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+}
+pingConnection()
+
 PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
     console.log(`Server berjalan pada port ${PORT}`);
