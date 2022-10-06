@@ -7,7 +7,12 @@
     "start": "node server",
     "dev": "nodemon server"
   },
-  "keywords": [],
+  "keywords": [    "nodejs",
+  "express",
+  "rest",
+  "api",
+  "sequelize",
+  "mysql"],
   "author": "",
   "license": "ISC",
   "dependencies": {
