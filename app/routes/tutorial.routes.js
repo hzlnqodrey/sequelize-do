@@ -15,6 +15,9 @@ module.exports = app => {
     // Route to Retrieve all published tutorials
     router.get('/publushed', controller_tutorial.findAllPublished)
 
+    // Route to Update a Tutorial with Id given
+    router.put('/:id', controller_tutorial.update)
+
     // Use custom route by chaining to our defined routers
     app.use('/api/tutorials', router)
 }
