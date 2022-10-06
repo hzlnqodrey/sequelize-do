@@ -9,6 +9,9 @@ module.exports = app => {
     // Route to Retrieve all the Tutoruals controller
     router.get('/', controller_tutorial.findAll)
 
+    // Route to Retrieve a single Tutorial with Id given
+    router.get('/:id', controller_tutorial.findOne)
+
     // Use custom route by chaining to our defined routers
     app.use('/api/tutorials', router)
 }
