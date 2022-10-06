@@ -33,6 +33,8 @@ app.get('/', (req, res) => {
         console.log('ping success to database')
 })
 
+require('./app/routes/tutorial.routes')(app)
+
 PORT = parseInt(process.env.PORT) || 8080
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
