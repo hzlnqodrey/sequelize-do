@@ -120,7 +120,21 @@ exports.delete = (req, res) => {
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-
+    Tutorial.destory({
+        where: {},
+        truncate: false
+    })
+        .then(nums => {
+            res.send({
+                message: `${nums} Tutorials were deleted successfully!`
+            })
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: 
+                    err.message || "Some error occurred while removing all tutorials."
+            })
+        })
 }
 
 // Find all published Tutorials
