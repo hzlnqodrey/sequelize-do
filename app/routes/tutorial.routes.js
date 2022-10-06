@@ -18,6 +18,9 @@ module.exports = app => {
     // Route to Update a Tutorial with Id given
     router.put('/:id', controller_tutorial.update)
 
+    // Route to Delete a tutorial with Id given
+    router.delete('/:id', controller_tutorial.delete)
+
     // Use custom route by chaining to our defined routers
     app.use('/api/tutorials', router)
 }
