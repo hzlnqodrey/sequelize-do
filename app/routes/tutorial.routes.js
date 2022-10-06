@@ -6,7 +6,9 @@ module.exports = app => {
     // Route to Create a new Tutorial controller
     router.post('/', controller_tutorial.create)
 
-    
+    // Route to Retrieve all the Tutoruals controller
+    router.get('/', controller_tutorial.findAll)
+
     // Use custom route by chaining to our defined routers
     app.use('/api/tutorials', router)
 }
