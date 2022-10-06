@@ -34,7 +34,18 @@ exports.create = (req, res) => {
 
 // Retrieve All tutorials from the database
 exports.findAll = (req, res) => {
+    const title = req.body.query
+    var condition = title ? { title: { [Op.like]: `%${title}%` }} : null
 
+    Tutorial.findAll({ where: condition })
+        .then(data => {
+            res.send(data)
+        })
+        .catch((error) => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving Tutorial."
+            })
+        })
 }
 
 // Find a single Tutorial with an id
