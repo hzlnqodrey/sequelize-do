@@ -21,6 +21,9 @@ module.exports = app => {
     // Route to Delete a tutorial with Id given
     router.delete('/:id', controller_tutorial.delete)
 
+    // Route to Delete all Tutorials
+    router.delete('/', controller_tutorial.deleteAll)
+
     // Use custom route by chaining to our defined routers
     app.use('/api/tutorials', router)
 }
